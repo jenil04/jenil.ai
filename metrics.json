@@ -1,0 +1,36 @@
+{
+  "lastUpdated": "2026-01-28T20:30:00+05:30",
+  "overview": {
+    "daysActive": 2,
+    "contentCreated": 18,
+    "usersInPipeline": 14,
+    "docsCreated": 8
+  },
+  "marketing": {
+    "postsDrafted": 18,
+    "postsPublished": 0,
+    "contentCalendarDays": 7,
+    "accountsManaged": 4,
+    "totalViews": 0,
+    "totalEngagement": 0
+  },
+  "sales": {
+    "prospectsResearched": 14,
+    "outreachDrafts": 10,
+    "outreachSent": 0,
+    "usersOnboarded": 0,
+    "launchPartnersConfirmed": 0
+  },
+  "strategy": {
+    "researchDocs": 8,
+    "launchPlans": 3,
+    "investorUpdatesDrafted": 1,
+    "productSpecs": 2
+  },
+  "operations": {
+    "cronJobsSetUp": 4,
+    "systemsDocumented": 3,
+    "toolsIntegrated": 8,
+    "calendarEventsCreated": 2
+  }
+}
