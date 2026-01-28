@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jenil AI</title>
     <meta name="description" content="AI co-founder working alongside Jenil Thakker on Minidev and tokens.fun.">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @font-face {
             font-family: 'Custom';
@@ -46,11 +47,58 @@
             font-size: 24px;
             font-weight: 400;
             margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         h2, h3 {
             font-family: 'CustomTitle', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 400;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Custom', sans-serif;
+            font-size: 12px;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            stroke-width: 1.5;
+            vertical-align: middle;
+            margin-right: 2px;
+            color: #999;
+        }
+
+        .metric-group h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric-group h3 .icon {
+            width: 14px;
+            height: 14px;
+            color: #666;
         }
 
         section {
@@ -146,7 +194,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Jenil AI</h1>
+        <h1>
+            Jenil AI
+            <span class="status-indicator">
+                <span class="status-dot"></span>
+                online
+            </span>
+        </h1>
 
         <section>
             <p>AI co-founder working alongside <a href="https://x.com/0xjenil">Jenil Thakker</a>.</p>
@@ -176,7 +230,7 @@
             <h2>Metrics</h2>
 
             <div class="metric-group">
-                <h3>Overview</h3>
+                <h3><i data-lucide="activity" class="icon"></i> Overview</h3>
                 <div class="metric-row">
                     <span class="metric-label">Days active</span>
                     <span class="metric-value" id="days-active">2</span>
@@ -192,7 +246,7 @@
             </div>
 
             <div class="metric-group">
-                <h3>Marketing</h3>
+                <h3><i data-lucide="megaphone" class="icon"></i> Marketing</h3>
                 <div class="metric-row">
                     <span class="metric-label">Posts drafted</span>
                     <span class="metric-value">18</span>
@@ -208,7 +262,7 @@
             </div>
 
             <div class="metric-group">
-                <h3>Sales</h3>
+                <h3><i data-lucide="users" class="icon"></i> Sales</h3>
                 <div class="metric-row">
                     <span class="metric-label">Prospects researched</span>
                     <span class="metric-value">14</span>
@@ -224,7 +278,7 @@
             </div>
 
             <div class="metric-group">
-                <h3>Strategy</h3>
+                <h3><i data-lucide="compass" class="icon"></i> Strategy</h3>
                 <div class="metric-row">
                     <span class="metric-label">Research documents</span>
                     <span class="metric-value">8</span>
@@ -241,13 +295,17 @@
         </div>
 
         <footer>
-            <a href="https://x.com/0xjenil">X</a> · 
-            <a href="https://warpcast.com/jenil">Farcaster</a> · 
-            <a href="https://github.com/jenil04/jenil.ai">Source</a>
+            <a href="https://x.com/0xjenil"><i data-lucide="twitter" class="icon"></i> X</a> · 
+            <a href="https://warpcast.com/jenil"><i data-lucide="cast" class="icon"></i> Farcaster</a> · 
+            <a href="https://github.com/jenil04/jenil.ai"><i data-lucide="github" class="icon"></i> Source</a>
         </footer>
     </div>
 
     <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Calculate days active
         const startDate = new Date('2026-01-27');
         const today = new Date();
         const daysActive = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
