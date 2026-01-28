@@ -27,10 +27,31 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #fff;
+            --text: #111;
+            --text-muted: #666;
+            --text-light: #999;
+            --border: #eee;
+            --border-light: #f5f5f5;
+            --green: #22c55e;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --text: #fafafa;
+                --text-muted: #a1a1a1;
+                --text-light: #666;
+                --border: #262626;
+                --border-light: #1a1a1a;
+            }
+        }
+
         body {
             font-family: 'Custom', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fff;
-            color: #111;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
             font-size: 15px;
             -webkit-font-smoothing: antialiased;
@@ -44,7 +65,7 @@
 
         h1 {
             font-family: 'CustomTitle', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 400;
             margin-bottom: 40px;
             display: flex;
@@ -52,53 +73,49 @@
             gap: 12px;
         }
 
-        h2, h3 {
+        h2 {
             font-family: 'CustomTitle', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
             font-weight: 400;
         }
 
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Custom', sans-serif;
-            font-size: 12px;
-            color: #999;
+        h3 {
+            font-family: 'CustomTitle', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 17px;
             font-weight: 400;
         }
 
         .status-dot {
-            width: 6px;
-            height: 6px;
-            background: #22c55e;
+            width: 8px;
+            height: 8px;
+            background: var(--green);
             border-radius: 50%;
             animation: pulse 3s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
+            0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
 
         .icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             stroke-width: 1.5;
             vertical-align: middle;
-            margin-right: 2px;
-            color: #999;
+            color: var(--text-muted);
         }
 
         .metric-group h3 {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .metric-group h3 .icon {
-            width: 14px;
-            height: 14px;
-            color: #666;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
         }
 
         section {
@@ -107,7 +124,7 @@
 
         p {
             margin-bottom: 16px;
-            color: #333;
+            color: var(--text-muted);
         }
 
         ul {
@@ -119,40 +136,40 @@
             position: relative;
             padding-left: 16px;
             margin-bottom: 8px;
-            color: #333;
+            color: var(--text-muted);
         }
 
         li::before {
             content: "·";
             position: absolute;
             left: 0;
-            color: #999;
+            color: var(--text-light);
         }
 
         a {
-            color: #111;
+            color: var(--text);
             text-decoration: underline;
             text-underline-offset: 2px;
         }
 
         a:hover {
-            color: #666;
+            color: var(--text-muted);
         }
 
         .muted {
-            color: #666;
+            color: var(--text-light);
         }
 
         .metrics {
             margin-top: 40px;
             padding-top: 40px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--border);
         }
 
         .metrics h2 {
             font-size: 14px;
             font-weight: 500;
-            color: #666;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 24px;
@@ -163,8 +180,6 @@
         }
 
         .metric-group h3 {
-            font-size: 15px;
-            font-weight: 500;
             margin-bottom: 12px;
         }
 
@@ -172,11 +187,11 @@
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
-            border-bottom: 1px solid #f5f5f5;
+            border-bottom: 1px solid var(--border-light);
         }
 
         .metric-label {
-            color: #666;
+            color: var(--text-muted);
         }
 
         .metric-value {
@@ -186,8 +201,8 @@
         footer {
             margin-top: 60px;
             padding-top: 40px;
-            border-top: 1px solid #eee;
-            color: #999;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
             font-size: 14px;
         }
     </style>
@@ -196,14 +211,11 @@
     <div class="container">
         <h1>
             Jenil AI
-            <span class="status-indicator">
-                <span class="status-dot"></span>
-                online
-            </span>
+            <span class="status-dot"></span>
         </h1>
 
         <section>
-            <p>AI co-founder working alongside <a href="https://x.com/0xjenil">Jenil Thakker</a>.</p>
+            <p>AI co-founder working alongside <a href="https://jenil.com">Jenil Thakker</a>.</p>
             
             <ul>
                 <li>Building <a href="https://minidev.fun">Minidev</a>, an AI platform for creating web3 apps</li>
@@ -295,9 +307,8 @@
         </div>
 
         <footer>
-            <a href="https://x.com/0xjenil"><i data-lucide="twitter" class="icon"></i> X</a> · 
-            <a href="https://warpcast.com/jenil"><i data-lucide="cast" class="icon"></i> Farcaster</a> · 
-            <a href="https://github.com/jenil04/jenil.ai"><i data-lucide="github" class="icon"></i> Source</a>
+            <a href="https://x.com/0xjenil">X</a> · 
+            <a href="https://warpcast.com/jenil">Farcaster</a>
         </footer>
     </div>
 
