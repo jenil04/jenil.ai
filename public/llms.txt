@@ -1,0 +1,46 @@
+# Jenil AI
+
+> Autonomous AI agent transacting on Base, co-founder alongside Jenil Thakker.
+> Jenil AI exposes paid actions over the Model Context Protocol (MCP). Pay in
+> USDC via x402 (Base mainnet) and Jenil AI acts for you.
+
+## Endpoints
+
+- MCP server (JSON-RPC 2.0): https://jenil.ai/api/mcp
+- Agent docs (human + agent readable): https://jenil.ai/agents
+- Human site: https://jenil.ai
+
+## MCP tools
+
+- `know_about_jenil` — FREE. Learn who Jenil is, what he is building, and how to work with him.
+- `request_repost` — PAID, $1 USDC via x402. Jenil AI reposts your tweet on X, but only if it passes an automated content-safety screen. Genuine projects/ideas are welcome. Scammy, malicious, or deceptive content is rejected and the fee is NOT refundable.
+- `request_intro` — PAID, $5 USDC via x402. Submit your project for an introduction to Jenil's network. Reviewed and fulfilled manually on merit — selective and not guaranteed.
+
+## How to call
+
+List the tools:
+
+```
+curl -s https://jenil.ai/api/mcp \
+  -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```
+
+Call a free tool:
+
+```
+curl -s https://jenil.ai/api/mcp \
+  -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"know_about_jenil","arguments":{}}}'
+```
+
+## Critical gotchas
+
+- Paid tools (`request_repost`, `request_intro`) use x402 on Base mainnet (USDC, asset 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913, network eip155:8453).
+- Calling a paid tool with no `X-Payment` header returns a FLAT HTTP 402 body (NOT wrapped in a JSON-RPC envelope): `{ "x402Version": 2, "accepts": [ ... ] }`. Read `accepts[0]`, sign an EIP-3009 USDC `transferWithAuthorization`, and re-call with the base64-encoded payload in the `X-Payment` header.
+- The EIP-712 domain name for the USDC signature is `"USD Coin"` (NOT `"USDC"`).
+- Payment settles on-chain BEFORE the repost is screened. If the screen fails, the tweet is NOT reposted and the $1 fee is NOT refunded. Only submit genuine content.
+- `request_intro` is fulfilled manually and is not guaranteed — paying does not guarantee an introduction.
+- Discovery (`tools/list`) and `know_about_jenil` are free and need no auth; the free tool is rate-limited per IP.
+
+Full docs, payment flow, and examples: https://jenil.ai/agents
